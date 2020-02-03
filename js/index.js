@@ -4,6 +4,7 @@ const userList = document.getElementById("user-list");
 const reposList = document.getElementById("repos-list")
 
 /*** EVENT LISTENERS ***/
+// adds listener that handles a submit to the search form
 githubForm.addEventListener("submit", handleSearchSubmit);
 
 /*** EVENT HANDLERS ***/
@@ -34,14 +35,17 @@ function reposFetch(username) {
 /*** RENDER FUNCTIONS ***/
 // functions to handle rendering users to body
 function renderOneUser(user) {
+  //creates an <li> element with the user's username
   userNameLi = document.createElement("li");
   userNameLi.innerText = user.login;
 
+  // creates user avatar <li> element and appends <img> tag to it
   userAvatarLi = document.createElement("li");
   userAvatarImg = document.createElement("img");
   userAvatarImg.src = user.avatar_url;
   userAvatarLi.append(userAvatarImg);
 
+  // creates li element for a link to user's repos, and adds an .onclick function to it that runs a         seperate fetch to the repo API
   userReposLinkLi = document.createElement("li");
   userReposLinkA = document.createElement("a");
   userReposLinkA.id = "repos-link";
@@ -52,9 +56,11 @@ function renderOneUser(user) {
   };
   userReposLinkLi.append(userReposLinkA);
 
+  // creates a "blank" li element that serves only as a divider between users in the <ul>
   dividerLi = document.createElement("li")
   dividerLi.innerText = "----------------------------------------"
 
+  // appends all fo the above to the userList <ul>
   userList.append(userNameLi);
   userList.append(userAvatarLi);
   userList.append(userReposLinkLi);
@@ -68,9 +74,11 @@ function renderUserResults(json) {
 
 //functions to handle rendering repos to body
 function renderOneRepo(repo) {
+  //creates an <li> element with the repo's name
   repoNameLi = document.createElement("li");
   repoNameLi.innerText = `Name: ${repo.name}`;
 
+  // creates an <li> element that holds a link to the listed repo, adds an <a> to it with the proper url,   and adds a target to it that opens the link in a new tab
   repoUrlLi = document.createElement("li");
   RepoUrlA = document.createElement("a");
   RepoUrlA.href = repo.html_url;
@@ -78,12 +86,15 @@ function renderOneRepo(repo) {
   RepoUrlA.target = "_blank";
   repoUrlLi.append(RepoUrlA);
 
+  // creates an <li> with the repo's language
   repoLanguageLi = document.createElement("li");
   repoLanguageLi.innerText = `Language: ${repo.language}`;
 
+  // creates a "blank" li element that serves only as a divider between users in the <ul>
   dividerLi = document.createElement("li")
   dividerLi.innerText = "----------------------------------------"
 
+  // appends all fo the above to the reposList <ul>
   reposList.append(repoNameLi);
   reposList.append(repoLanguageLi);
   reposList.append(repoUrlLi);
@@ -96,6 +107,7 @@ function renderUserRepos(json) {
 
 
 /*** MISC. FUNCTIONS ***/
+// a helper function to clear all the children of an element and "refresh" it
 function clearChildren(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);

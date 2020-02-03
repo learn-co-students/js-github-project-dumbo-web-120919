@@ -41,14 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //creates an <li> element with the user's username
     userNameLi = document.createElement("li");
     userNameLi.innerText = user.login;
-
     // creates user avatar <li> element and appends <img> tag to it
     userAvatarLi = document.createElement("li");
     userAvatarImg = document.createElement("img");
     userAvatarImg.src = user.avatar_url;
     userAvatarLi.append(userAvatarImg);
-
-    // creates li element for a link to user's repos, and adds an .onclick function to it that runs a         seperate fetch to the repo API
+    // creates li element for a link to user's repos, and adds an .onclick function to it that runs a seperate fetch to the repo API
     userReposLinkLi = document.createElement("li");
     userReposLinkA = document.createElement("a");
     userReposLinkA.id = "repos-link";
@@ -58,11 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
       reposFetch(user.login)
     };
     userReposLinkLi.append(userReposLinkA);
-
     // creates a "blank" li element that serves only as a divider between users in the <ul>
     dividerLi = document.createElement("li")
     dividerLi.innerText = "----------------------------------------"
-
     // appends all fo the above to the userList <ul>
     userList.append(userNameLi);
     userList.append(userAvatarLi);
@@ -80,23 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
     //creates an <li> element with the repo's name
     repoNameLi = document.createElement("li");
     repoNameLi.innerText = `Name: ${repo.name}`;
-
-    // creates an <li> element that holds a link to the listed repo, adds an <a> to it with the proper url,   and adds a target to it that opens the link in a new tab
+    // creates an <li> element that holds a link to the listed repo, adds an <a> to it with the proper url, and adds a target to it that opens the link in a new tab
     repoUrlLi = document.createElement("li");
     RepoUrlA = document.createElement("a");
     RepoUrlA.href = repo.html_url;
     RepoUrlA.innerText = "Click to see this repo on Github";
     RepoUrlA.target = "_blank";
     repoUrlLi.append(RepoUrlA);
-
     // creates an <li> with the repo's language
     repoLanguageLi = document.createElement("li");
     repoLanguageLi.innerText = `Language: ${repo.language}`;
-
     // creates a "blank" li element that serves only as a divider between users in the <ul>
     dividerLi = document.createElement("li")
     dividerLi.innerText = "----------------------------------------"
-
     // appends all fo the above to the reposList <ul>
     reposList.append(repoNameLi);
     reposList.append(repoLanguageLi);
